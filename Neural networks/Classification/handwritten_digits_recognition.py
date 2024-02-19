@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1S2tA9TDGsOUDfS1u9TSfqX8YxF70MXFF
 """
 
-# Commented out IPython magic to ensure Python compatibility.
+# импорт библиотек
 import numpy as np
 import matplotlib.pyplot as plt
 from tensorflow.keras.datasets import mnist
