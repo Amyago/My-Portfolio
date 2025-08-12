@@ -1,0 +1,9 @@
+customtkinter
+pymysql
+pandas
+openpyxl
+sqlparse
+pygments
+matplotlib
+schedule
+psycopg2-binary
