@@ -1,0 +1,26 @@
+# Виртуальное окружение
+.venv/
+venv/
+env/
+
+# Файлы IDE
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode/
+
+# Данные
+data/processed/
+__pycache__/
+*.pyc
+
+# Логи
+*.log
+
+# Тестовые артефакты
+htmlcov/
+.tox/
+.coverage
