@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск вакансий</title>
+    <!-- Подключаем наш файл со стилями -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Поиск вакансий на hh.ru</h1>
+
+        <!-- Форма для отправки поискового запроса. Отправляет данные методом POST на эту же страницу ('/') -->
+        <form action="/" method="POST" class="search-form">
+            <div class="form-row">
+                <input type="text" name="query" placeholder="Ключевые слова" value="{{ search_params.query or 'data AND python NOT aston' }}" required>
+                <select name="area">
+                    {% for area in areas %}
+                        <option value="{{ area }}" {% if search_params.area == area %}selected{% endif %}>{{ area }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-row filter-row">
+                <label>
+                    <input type="checkbox" name="filter_enabled" {% if search_params.filter_enabled %}checked{% endif %}>
+                    Фильтр по рейтингу (медленно)
+                </label>
+                <input type="number" name="min_rating" min="0" max="5" step="0.1" value="{{ search_params.min_rating or 4.0 }}">
+            </div>
+            <button type="submit">Найти</button>
+        </form>
+
+        <!-- Блок для вывода результатов. Показывается только если `results` не пустые. -->
+        {% if results %}
+            <div class="results-info">
+                {% if results.error %}
+                    <p class="error">{{ results.error }}</p>
+                {% else %}
+                    <p>Найдено: {{ results.found }}. Отображено: {{ results.vacancies|length }}. Страниц: {{ results.pages }}</p>
+                {% endif %}
+            </div>
+
+            <div class="results-container">
+                <!-- Цикл, который проходит по каждой вакансии и создает для нее карточку. -->
+                {% for vacancy in results.vacancies %}
+                    <div class="vacancy-card">
+                        <h3><a href="{{ vacancy.url }}" target="_blank">{{ vacancy.name }}</a></h3>
+                        <p class="employer">{{ vacancy.employer }}</p>
+                        <p class="salary">{{ vacancy.salary }}</p>
+                    </div>
+                {% else %}
+                    <!-- Этот блок показывается, если цикл не выполнился ни разу (список вакансий пуст). -->
+                    <p>По вашему запросу ничего не найдено.</p>
+                {% endfor %}
+            </div>
+
+            <!-- Простая пагинация (пока без кнопок, но можно расширить) -->
+            <p>Текущая страница: {{ search_params.page + 1 }}</p>
+
+        {% endif %}
+
+    </div>
+</body>
+</html>
