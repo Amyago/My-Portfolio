@@ -1,0 +1,160 @@
+/* --- Общие стили для всей страницы --- */
+body {
+    /* Задает семейство шрифтов. Браузер будет использовать первый доступный из списка. */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /* Цвет фона всей страницы. */
+    background-color: #f4f7f6;
+    /* Основной цвет текста. */
+    color: #333;
+    /* Межстрочный интервал для лучшей читаемости. */
+    line-height: 1.6;
+    /* Убираем отступы по умолчанию у body. */
+    margin: 0;
+    /* Добавляем внутренние отступы, чтобы контент не прилипал к краям экрана. */
+    padding: 20px;
+}
+
+/* --- Стили для основного контейнера контента --- */
+.container {
+    /* Максимальная ширина контейнера. На больших экранах он не будет растягиваться до бесконечности. */
+    max-width: 800px;
+    /* `margin: 0 auto` - классический способ центрировать блочный элемент по горизонтали. */
+    margin: 0 auto;
+    /* Цвет фона самого контейнера. */
+    background: #fff;
+    /* Внутренние отступы от краев контейнера до его содержимого. */
+    padding: 20px 30px;
+    /* Скругляем углы. */
+    border-radius: 8px;
+    /* Добавляем легкую тень для создания эффекта объема. */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* --- Стили для заголовков и формы --- */
+h1 {
+    /* Центрируем главный заголовок. */
+    text-align: center;
+    /* Задаем цвет заголовка. */
+    color: #005f73;
+}
+
+.search-form {
+    /* Используем Flexbox для удобного расположения элементов формы. */
+    display: flex;
+    /* Располагаем дочерние элементы вертикально, в колонку. */
+    flex-direction: column;
+    /* Задаем расстояние между дочерними элементами. */
+    gap: 15px;
+    /* Внешний отступ снизу. */
+    margin-bottom: 30px;
+}
+
+.form-row {
+    /* Эта строка также использует Flexbox для расположения элементов (например, поля ввода и списка) в один ряд. */
+    display: flex;
+    gap: 10px;
+}
+
+.form-row input[type="text"], .form-row select {
+    /* Позволяет элементу расти и занимать все доступное пространство в .form-row. */
+    flex-grow: 1;
+    /* Внутренние отступы в полях ввода. */
+    padding: 10px;
+    /* Рамка вокруг полей. */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* Размер шрифта в полях ввода. */
+    font-size: 16px;
+}
+
+.filter-row {
+    /* Выравниваем элементы по вертикали. */
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.filter-row input[type="number"] {
+    /* Фиксированная ширина для поля ввода рейтинга. */
+    width: 60px;
+    padding: 8px;
+}
+
+button[type="submit"] {
+    padding: 12px 20px;
+    background-color: #0077b6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    /* Меняет курсор на "руку" при наведении. */
+    cursor: pointer;
+    /* Плавный переход для изменения цвета фона. */
+    transition: background-color 0.2s;
+}
+
+/* Псевдо-класс `:hover` применяется, когда курсор мыши находится над элементом. */
+button[type="submit"]:hover {
+    /* Делаем кнопку немного темнее при наведении. */
+    background-color: #005f9e;
+}
+
+/* --- Стили для блока результатов --- */
+.results-info {
+    text-align: center;
+    margin-bottom: 20px;
+    font-style: italic;
+    color: #555;
+}
+
+.error {
+    /* Стиль для сообщения об ошибке. */
+    color: #d90429;
+    font-weight: bold;
+}
+
+.results-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.vacancy-card {
+    /* Стили для отдельной карточки с вакансией. */
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 15px;
+    transition: box-shadow 0.2s;
+}
+
+.vacancy-card:hover {
+    /* Добавляем тень при наведении на карточку. */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.vacancy-card h3 {
+    margin: 0 0 5px; /* Убираем отступы сверху и по бокам, добавляем маленький снизу. */
+}
+
+.vacancy-card a {
+    /* Убираем стандартное подчеркивание у ссылок. */
+    text-decoration: none;
+    color: #023e8a;
+}
+
+.vacancy-card a:hover {
+    /* Возвращаем подчеркивание при наведении на ссылку. */
+    text-decoration: underline;
+}
+
+.employer {
+    color: #495057;
+    margin: 0 0 10px;
+    font-size: 15px;
+}
+
+.salary {
+    color: #007f5f;
+    font-weight: bold;
+    margin: 0;
+}
