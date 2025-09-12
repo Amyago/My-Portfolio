@@ -29,7 +29,8 @@ LIMIT 10;
 ```
 
 **Результат:**
-*(➡️ Сюда скопируйте таблицу с результатом из вашего терминала)*
+
+![](https://github.com/Amyago/My-Portfolio/blob/main/spark-movielens-analysis/img1.JPG)
 
 ### Вопрос 2: Какие 10 фильмов имеют самый высокий средний рейтинг (при условии, что их оценили не менее 50 раз)?
 
@@ -45,6 +46,5 @@ LIMIT 10;
 ```
 
 **Результат:**
-*(➡️ Сюда скопируйте таблицу с результатом из вашего терминала)*
 
----
+![](https://github.com/Amyago/My-Portfolio/blob/main/spark-movielens-analysis/img2.JPG)
