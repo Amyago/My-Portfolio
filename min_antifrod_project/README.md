@@ -63,3 +63,24 @@
 - Scikit-learn (`RandomForestClassifier`, `StandardScaler`)
 - NumPy
 - Matplotlib (для визуализации)
+
+## Теги
+#machine-learning
+#fraud-detection
+#concept-drift
+#model-degradation
+#mlops
+#supervised-learning
+#anti-fraud
+#python
+#data-science
+#random-forest
+#isolation-forest
+#scikit-learn
+#data-analysis
+#mlops-tutorial
+#fraud-simulation
+#ai-security
+#financial-fraud
+#cybersecurity
+#real-world-ml
