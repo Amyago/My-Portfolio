@@ -1,52 +1,20 @@
-import pytest
-from selenium import webdriver
+from pages.wikipedia_home_page import WikipediaHomePage
 
-def pytest_addoption(parser):
-    """Добавляет опции командной строки в pytest."""
-    parser.addoption(
-        "--browser",
-        action="store",
-        default="chrome",
-        help="Choose browser: chrome or firefox"
-    )
-    parser.addoption(
-        "--base-url",
-        action="store",
-        default="https://www.wikipedia.org/",
-        help="Specify the base URL for the tests"
-    )
-    # --- НОВАЯ ОПЦИЯ ---
-    parser.addoption(
-        "--env",
-        action="store",
-        default="prod",
-        help="Specify environment: prod or test"
-    )
 
-@pytest.fixture(scope="module")
-def driver(request):
-    """Фикстура-фабрика для создания драйвера."""
-    browser_name = request.config.getoption("browser")
+# Тесты теперь принимают фикстуру env
+def test_wikipedia_search(driver, base_url, env):
+    home_page = WikipediaHomePage(driver, base_url, env)
+    home_page.open()
 
-    if browser_name.lower() == "chrome":
-        driver = webdriver.Chrome()
-    elif browser_name.lower() == "firefox":
-        # Убедитесь, что у вас установлен geckodriver
-        driver = webdriver.Firefox()
-    else:
-        raise pytest.UsageError("--browser should be chrome or firefox")
+    search_term = "Selenium"
+    results_page = home_page.search_for(search_term)
 
-    yield driver
+    results_title = results_page.get_page_title()
+    assert search_term in results_title
 
-    driver.quit()
 
-@pytest.fixture(scope="module")
-def base_url(request):
-    """Фикстура для получения базового URL из командной строки."""
-    return request.config.getoption("--base-url")
+def test_page_title(driver, base_url, env):
+    wiki_page = WikipediaHomePage(driver, base_url, env)
+    wiki_page.open()
 
-# --- НОВАЯ ФИКСТУРА ---
-@pytest.fixture(scope="module")
-def env(request):
-    """Фикстура для получения окружения из командной строки."""
-    return request.config.getoption("env")
+    assert wiki_page.is_title_correct(), "Заголовок главной страницы некорректен"
